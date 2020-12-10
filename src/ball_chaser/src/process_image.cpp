@@ -32,9 +32,9 @@ void processimage_callback(const sensor_msgs::Image image)
     // Request a stop when there's no white ball seen by the camera
     for (int i = 0; i < image.height * image.step; i += 3)
     {
-        red = image.data[i];
-        green = image.data[i + 1];
-        blue = image.data[i + 2];
+        int red = image.data[i];
+        int green = image.data[i + 1];
+        int blue = image.data[i + 2];
 
         if ((red == pixel_in_white) && (green == pixel_in_white) && (blue == pixel_in_white))
         {
@@ -42,13 +42,13 @@ void processimage_callback(const sensor_msgs::Image image)
             // Note x towards left side is positive and right is negative
             if (column_id < image.step / 3)
                 //the robot will drive towards left as column lies in the first step
-                driving_robot(0.5, 1);
+                driving_robot(0.6, 1);
             else if (column_id < ((image.step * 2) / 3))
                 //the robot will drive straight as column lies in the center step
-                driving_robot(0.5, 0);
+                driving_robot(0.6, 0);
             else
                 //the robot will drive right as column lies in the third step
-                driving_robot(0.5, -1);
+                driving_robot(0.6, -1);
             ball_found = true;
             break;
         }
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
 
     // Define a client service that is capable of requesting services using command_robot key word
-    client = n.serviceClient<ball_chaser::DriveToTarget>("/ball_chaser/command_robot");
+    Client = n.serviceClient<ball_chaser::DriveToTarget>("/ball_chaser/command_robot");
 
     // Subscribing to the topic /camera/rgb/image_raw to extract the image raw pixels inside the processimage_callback
     ros::Subscriber sub1 = n.subscribe("/camera/rgb/image_raw", 10, processimage_callback);
