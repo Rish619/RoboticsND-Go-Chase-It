@@ -261,13 +261,13 @@ void processimage_callback(const sensor_msgs::Image image)
             // Note x towards left side is positive and right is negative
             if (column_id < image.step/3)
             //the robot will drive towards left as column lies in the first step 
-                driving_robot(0.5, 1);
+                driving_robot(0.6, 1);
             else if (column_id < ((image.step * 2)/3))
             //the robot will drive straight as column lies in the center step 
-                driving_robot(0.5, 0); 
+                driving_robot(0.6, 0); 
             else
             //the robot will drive right as column lies in the third step 
-                driving_robot(0.5, -1);
+                driving_robot(0.6, -1);
             ball_found = true;
             break;
          }
