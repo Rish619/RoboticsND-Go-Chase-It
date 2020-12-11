@@ -35,6 +35,9 @@ The robot designed in this project is a base model for all the other  projects t
   * 1- Now, download this hokuyo.dae file and place it under the meshes directory you just created under my_robot.
   * 2- Add the Hokuyo sensor to my_robot.xacro under urdf subdirectory.
 
+### White ball modeled in gazebo
+![Alt](images/White_ball_model.png)
+
 
 ## Evaluation
  
